@@ -1,5 +1,6 @@
 const express = require("express");
 const {createtodo,updatetodo} = require("./types")
+const cors =  require("cors");
 
 const { todo } = require ("./db")
 
@@ -7,6 +8,7 @@ const { todo } = require ("./db")
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 
 app.post("/todo",async function(req,res){
@@ -21,7 +23,7 @@ app.post("/todo",async function(req,res){
     }
     await todo.create({
         title : createPayload.title,
-        description : createPayload.title,
+        description : createPayload.description,
         completed : false,
     })
 
